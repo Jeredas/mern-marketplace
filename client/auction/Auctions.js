@@ -80,7 +80,7 @@ export default function Auctions(props){
                         <ViewIcon/>
                       </IconButton>
                     </Link>
-                { auth.isAuthenticated().user && auth.isAuthenticated().user._id == auction.seller._id &&
+                { auth.isAuthenticated() && auth.isAuthenticated().user._id == auction.seller._id &&
                   <>
                     <Link to={"/auction/edit/" + auction._id}>
                       <IconButton aria-label="Edit" color="primary">
