@@ -2,13 +2,15 @@ import { signout } from './api-auth.js'
 
 const auth = {
   isAuthenticated() {
-    if (typeof window == "undefined")
-      return false
-
-    if (sessionStorage.getItem('jwt'))
+    if (typeof window == "undefined") {
+      return false 
+    }
+    const jwt = sessionStorage.getItem('jwt');
+    if (jwt !== 'undefined') {
       return JSON.parse(sessionStorage.getItem('jwt'))
-    else
+    } else {
       return false
+    }
   },
   authenticate(jwt, cb) {
     if (typeof window !== "undefined")

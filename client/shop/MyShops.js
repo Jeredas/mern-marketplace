@@ -35,6 +35,11 @@ const useStyles = makeStyles(theme => ({
   },
   leftIcon: {
     marginRight: "8px"
+  },
+  orders_links: {
+    display: 'flex',
+    position: 'relative',
+    width: '100%',
   }
 }))
 
@@ -88,10 +93,12 @@ export default function MyShops(){
         {shops.map((shop, i) => {
             return   <span key={i}>
               <ListItem button>
+              <Link to={"/seller/orders/" + shop.name+ '/'+shop._id} className={classes.orders_links}>
                 <ListItemAvatar>
                   <Avatar src={'/api/shops/logo/'+shop._id+"?" + new Date().getTime()}/>
                 </ListItemAvatar>
                 <ListItemText primary={shop.name} secondary={shop.description}/>
+                </Link>
                 { auth.isAuthenticated().user && auth.isAuthenticated().user._id == shop.owner._id &&
                   (<ListItemSecondaryAction>
                     <Link to={"/seller/orders/" + shop.name+ '/'+shop._id}>
