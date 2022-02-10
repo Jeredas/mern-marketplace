@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#93c5ae3d',
     fontSize: '1.3em',
     color: '#375a53',
+    backgroundSize: 'contain',
   },
   media: {
     height: 200,

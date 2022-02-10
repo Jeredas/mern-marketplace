@@ -13,6 +13,15 @@ import Divider from '@material-ui/core/Divider'
 import DeleteAuction from './DeleteAuction'
 import auth from '../auth/auth-helper'
 import {Link} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles(theme => ({
+  auction_link: {
+    display: 'flex',
+    position: 'relative',
+    width: '100%',
+  }
+}))
 
 const calculateTimeLeft = (date) => {
   const difference = date - new Date()
@@ -33,6 +42,7 @@ const calculateTimeLeft = (date) => {
 }
 
 export default function Auctions(props){
+  const classes = useStyles()
   const currentDate = new Date()
   const showTimeLeft = (date) => {
     let timeLeft = calculateTimeLeft(date)
@@ -58,10 +68,12 @@ export default function Auctions(props){
         {props.auctions.map((auction, i) => {
             return   <span key={i}>
               <ListItem button>
+              <Link to={"/auction/" + auction._id} className={classes.auction_link}>
                 <ListItemAvatar>
                   <Avatar variant='square' src={'/api/auctions/image/'+auction._id+"?" + new Date().getTime()}/>
                 </ListItemAvatar>
                 <ListItemText primary={auction.itemName} secondary={auctionState(auction)}/>
+            </Link>
                 <ListItemSecondaryAction>
                     <Link to={"/auction/" + auction._id}>
                       <IconButton aria-label="View" color="primary">
